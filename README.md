@@ -15,7 +15,7 @@ mkdir ~/.kube
 ```
 
 ```bash
-sudo chown -R leo ~/.kube
+sudo chown -R $(whoami) ~/.kube
 ```
 
 > Reboot system
@@ -28,7 +28,7 @@ microk8s enable dns dashboard
 microk8s enable hostpath-storage
 ```
 
-## Run app
+## Run app in Microk8s
 
 ```bash
 microk8s kubectl apply -f ./volumes/movies-volume.yaml
@@ -48,4 +48,10 @@ microk8s kubectl apply -f ./apps/jellyfin-deployment.yaml
 
 ```bash
 microk8s kubectl apply -f ./services/jellyfin-service.yaml
+```
+
+## Run app in Docker compose
+
+```bash
+docker-compose up -d
 ```

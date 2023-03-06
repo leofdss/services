@@ -1,0 +1,37 @@
+version: '3'
+
+volumes:
+  jellyfin-library:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/leo/Vídeos/library # TODO
+  movies:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/leo/Vídeos/movies # TODO
+  tvseries:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/leo/Vídeos/tvseries # TODO
+      
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Sao_Paulo
+    volumes:
+      - jellyfin-library:/config
+      - movies:/data/movies
+      - tvseries:/data/tvseries
+    ports:
+      - 30500:8096
+    restart: always
