@@ -1,0 +1,32 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: tvseries
+provisioner: microk8s.io/hostpath
+reclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tvseries
+spec:
+  storageClassName: tvseries
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: '/home/leo/Vídeos/tvseries'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tvseries
+spec:
+  storageClassName: tvseries
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+

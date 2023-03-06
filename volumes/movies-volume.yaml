@@ -1,0 +1,32 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: movies
+provisioner: microk8s.io/hostpath
+reclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: movies
+spec:
+  storageClassName: movies
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: '/home/leo/Vídeos/movies'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: movies
+spec:
+  storageClassName: movies
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+
