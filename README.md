@@ -31,21 +31,21 @@ microk8s enable hostpath-storage
 ## Run app
 
 ```bash
-microk8s kubectl apply -f movies-volume.yaml
+microk8s kubectl apply -f ./volumes/movies-volume.yaml
 ```
 
 ```bash
-microk8s kubectl apply -f tvseries-volume.yaml
+microk8s kubectl apply -f ./volumes/tvseries-volume.yaml
 ```
 
 ```bash
-microk8s kubectl apply -f jellyfin-library-volume.yaml
+microk8s kubectl apply -f ./volumes/jellyfin-library-volume.yaml
 ```
 
 ```bash
-microk8s kubectl apply -f jellyfin-deployment.yaml
+microk8s kubectl apply -f ./apps/jellyfin-deployment.yaml
 ```
 
 ```bash
-microk8s kubectl apply -f jellyfin-service.yaml
+microk8s kubectl apply -f ./services/jellyfin-service.yaml
 ```
