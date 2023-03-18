@@ -28,6 +28,18 @@ microk8s enable dns dashboard
 microk8s enable hostpath-storage
 ```
 
+## Add-on gpu
+
+> Microk8s Required
+
+```bash
+microk8s enable gpu
+```
+
+```bash
+microk8s kubectl logs -n gpu-operator-resources -lapp=nvidia-operator-validator -c nvidia-operator-validator
+```
+
 ## Docker and Docker Compose
 
 ```bash

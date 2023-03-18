@@ -37,9 +37,11 @@ spec:
             limits:
               memory: 4Gi
               cpu: 4
+              nvidia.com/gpu: 1
             requests:
               memory: 2Gi
               cpu: 1
+              nvidia.com/gpu: 1 
           volumeMounts:
             - name: library
               mountPath: /config
@@ -54,3 +56,5 @@ spec:
               value: "1000"
             - name: "TZ"
               value: "America/Sao_Paulo"
+            - name: "NVIDIA_VISIBLE_DEVICES"
+              value: "all"
