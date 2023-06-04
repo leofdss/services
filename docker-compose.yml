@@ -1,25 +1,5 @@
 version: "3"
 
-volumes:
-  jellyfin-library:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ~/Vídeos/library
-  movies:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ~/Vídeos/movies
-  tvseries:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ~/Vídeos/tvseries
-
 services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -37,9 +17,23 @@ services:
       - TZ=America/Sao_Paulo
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
-      - jellyfin-library:/config
-      - movies:/data/movies
-      - tvseries:/data/tvseries
+      - ~/Services/jellyfin:/config
+      - ~/Vídeos/movies:/data/movies
+      - ~/Vídeos/tvseries:/data/tvseries
     ports:
       - 30500:8096
+    restart: always
+
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ~/Services/heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
     restart: always
