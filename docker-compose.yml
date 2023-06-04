@@ -6,19 +6,19 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/leo/Vídeos/library # TODO
+      device: ~/Vídeos/library
   movies:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/leo/Vídeos/movies # TODO
+      device: ~/Vídeos/movies
   tvseries:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /home/leo/Vídeos/tvseries # TODO
+      device: ~/Vídeos/tvseries
 
 services:
   jellyfin:
