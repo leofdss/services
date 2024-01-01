@@ -13,3 +13,13 @@ bash <(wget -qO- https://raw.githubusercontent.com/leofdss/setup-desktop/main/do
 ```bash
 docker-compose up -d
 ```
+
+## Change directory owner
+
+```bash
+myUser=$(whoami)
+movies=$(realpath ~/Vídeos/movies)
+tvseries=$(realpath ~/Vídeos/tvseries)
+sudo chown --recursive $myUser $movies
+sudo chown --recursive $myUser $tvseries
+```

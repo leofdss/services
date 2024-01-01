@@ -1,20 +1,22 @@
 version: "3"
 
 services:
-  jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
-    container_name: jellyfin
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Sao_Paulo
+      - TZ=Etc/UTC
+      - VERSION=docker
+      # - PLEX_CLAIM= #optional
     volumes:
-      - ~/Services/jellyfin:/config
-      - ~/Vídeos/movies:/data/movies
-      - ~/Vídeos/tvseries:/data/tvseries
+      - ~/Services/plex:/config
+      - ~/Vídeos/tvseries:/tv
+      - ~/Vídeos/movies:/movies
     ports:
-      - 8096:8096
-    restart: always
+      - 32400:32400
+    restart: unless-stopped
 
   heimdall:
     image: lscr.io/linuxserver/heimdall:latest
@@ -28,4 +30,20 @@ services:
     ports:
       - 80:80
       - 443:443
-    restart: always
+    restart: unless-stopped
+
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ~/Services/syncthing:/config
+      - ~/:/sync
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
