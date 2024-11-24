@@ -5,6 +5,11 @@
 ```bash
 docker-compose up -d
 ```
+or
+
+```bash
+docker compose up -d
+```
 
 ## Change directory owner
 
